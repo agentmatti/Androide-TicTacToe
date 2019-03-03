@@ -1,2 +1,2 @@
-# Androide-TicTacToe
-TicTacToe fuer Androide
+# Android-TicTacToe
+## TicTacToe fuer Android
