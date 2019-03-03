@@ -1,3 +1,3 @@
 # Android-TicTacToe
 ## TicTacToe fuer Android
-Gemacht mit AndroidStudios
+Gemacht mit Android Studio
