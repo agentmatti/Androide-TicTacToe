@@ -13,7 +13,7 @@ public class GameEngine {
     public GameEngine() {
         field = new char[9];
         // initial level is 0
-        level = 0;
+        level = 1;
         newGame();
     }
 
@@ -36,7 +36,9 @@ public class GameEngine {
     }
 
     public void changePlayer() {
+        System.out.println("changePlayer, current = " + getCurrentPlayer());
         currentPlayer = (currentPlayer == 'X' ? 'O' : 'X');
+        System.out.println("changePlayer, new = " + getCurrentPlayer());
     }
 
     char getCurrentPlayer() {
@@ -108,6 +110,7 @@ public class GameEngine {
     public int checkDefenseOrAttack(char Player, int sublevel) {
         // prüfe auf verteidigung
         // waagerecht
+        System.out.println("CheckDefenseOrAttack: " + Player + ":, sublevel = ");
 
         for (int y = 0; y <= 2; y++) {
             if ((getField(0, y) == Player) && (getField(1, y) == Player) && (getField(2, y) == ' ')) {
@@ -173,34 +176,34 @@ public class GameEngine {
     public char computer() {
         if (!ended) {
             // prüfe attacke
-            if (level >= 0) {
+            if (level == 0) {
                 setRandomField();
-            } else if (level >= 1) {
+            } else if (level == 1) {
                 if (setMiddle() != -1) {
                     setRandomField();
                 }
-            } else if (level >= 2) {
+            } else if (level == 2) {
                 // Angriff
                 if (checkDefenseOrAttack('O', 0) != -1) {
                     if (setMiddle() != -1) {
                         setRandomField();
                     }
                 }
-            } else if (level >= 3) {
+            } else if (level == 3) {
                 // Angriff
                 if (checkDefenseOrAttack('O', 1) != -1) {
                     if (setMiddle() != -1) {
                         setRandomField();
                     }
                 }
-            } else if (level >= 4) {
+            } else if (level == 4) {
                 // Angriff
                 if (checkDefenseOrAttack('O', 2) != -1) {
                     if (setMiddle() != -1) {
                         setRandomField();
                     }
                 }
-            } else if (level >= 5) {
+            } else if (level == 5) {
                 // angriff
                 if (checkDefenseOrAttack('O', 2) != -1) {
                     // verteidigung
@@ -210,7 +213,7 @@ public class GameEngine {
                         }
                     }
                 }
-            } else if (level >= 6) {
+            } else if (level == 6) {
                 // angriff
                 if (checkDefenseOrAttack('O', 2) != -1) {
                     // verteidigung
@@ -220,7 +223,7 @@ public class GameEngine {
                         }
                     }
                 }
-            } else if (level >= 7) {
+            } else if (level == 7) {
                 // angriff
                 if (checkDefenseOrAttack('O', 2) != -1) {
                     // verteidigung
@@ -230,7 +233,7 @@ public class GameEngine {
                         }
                     }
                 }
-            } else if (level >= 8) {
+            } else if (level == 8) {
                 // angriff
                 if (checkDefenseOrAttack('O', 2) != -1) {
                     // verteidigung
@@ -240,7 +243,7 @@ public class GameEngine {
                         }
                     }
                 }
-            } else if (level >= 9) {
+            } else if (level == 9) {
                 // minmax
                 // to be done, until then to random (baby mode)
                 setRandomField();
@@ -251,6 +254,7 @@ public class GameEngine {
     }
 
     int setMiddle() {
+        System.out.println("setMiddle");
         int position = -1;
 
         if (field[4] == ' ') {
@@ -262,7 +266,7 @@ public class GameEngine {
     }
 
     int setRandomField() {
-
+        System.out.println("setRandom");
         int position = -1;
         // try setting a random field which is not used
         do {
