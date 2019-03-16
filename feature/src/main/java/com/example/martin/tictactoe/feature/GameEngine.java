@@ -36,6 +36,9 @@ public class GameEngine {
         currentPlayer = (currentPlayer == 'X' ? 'O' : 'X');
     }
 
+    char getCurrentPlayer() {
+        return currentPlayer;
+    }
     // get the status of a field
     public char getField(int x, int y) {
         return field[3 * y + x];
@@ -47,11 +50,17 @@ public class GameEngine {
         for (int i = 0; i < field.length; i++) {
             field[i] = ' ';
         }
-        // start with player 'X'
-        currentPlayer = 'X';
+        // start with random player
+        int rand = RANDOM.nextInt(9);
+        if( rand < 5 ) {
+            currentPlayer = 'X';
+        } else {
+            currentPlayer = 'O';
+        }
         // set ended flag to false
         ended = false;
     }
+
 
     // check whether one player has 3 in a row
     public char checkEnd() {

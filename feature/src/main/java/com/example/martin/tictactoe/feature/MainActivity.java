@@ -62,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void newGame() {
         gameEngine.newGame();
+        // if the computer starts, let him make the first move
+        if( gameEngine.getCurrentPlayer() == 'O') {
+            gameEngine.computer();
+        }
         boardView.invalidate();
     }
-
 
 }
