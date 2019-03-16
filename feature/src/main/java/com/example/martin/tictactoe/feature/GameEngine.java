@@ -7,10 +7,13 @@ public class GameEngine {
     private char[] field;
     private char currentPlayer;
     private boolean ended;
+    private int level;
 
     // start new game
     public GameEngine() {
         field = new char[9];
+        // initial level is 0
+        level = 0;
         newGame();
     }
 
@@ -101,9 +104,10 @@ public class GameEngine {
         return 'T';
     }
 
-    public int checkDefenseOrAttack(char Player) {
+    public int checkDefenseOrAttack(char Player, int sublevel) {
         // prüfe auf verteidigung
         // waagerecht
+
         for (int y = 0; y <= 2; y++) {
             if ((getField(0, y) == Player) && (getField(1, y) == Player) && (getField(2, y) == ' ')) {
                 return 2 + (y * 3);
@@ -113,40 +117,47 @@ public class GameEngine {
                 return 0 + (y * 3);
             }
         } //senkrecht (vertauschen von x und y um gedreht zu prüfen)
-        for (int y = 0; y <= 2; y++) {
-            if ((getField(y, 0) == Player) && (getField(y, 1) == Player) && (getField(y, 2) == ' ')) {
-                return y + (2 * 3);
-            } else if ((getField(y, 0) == Player) && (getField(y, 2) == Player) && (getField(y, 1) == ' ')) {
-                return y + (1 * 3);
-            } else if ((getField(y, 1) == Player) && (getField(y, 2) == Player) && (getField(y, 0) == ' ')) {
-                return y + (0 * 3);
+
+        if( sublevel >= 1 ) {
+            for (int y = 0; y <= 2; y++) {
+                if ((getField(y, 0) == Player) && (getField(y, 1) == Player) && (getField(y, 2) == ' ')) {
+                    return y + (2 * 3);
+                } else if ((getField(y, 0) == Player) && (getField(y, 2) == Player) && (getField(y, 1) == ' ')) {
+                    return y + (1 * 3);
+                } else if ((getField(y, 1) == Player) && (getField(y, 2) == Player) && (getField(y, 0) == ' ')) {
+                    return y + (0 * 3);
+                }
             }
         }
         // diagonal
-        if (getField(1, 1) == Player) {
-            if (getField(0, 0) == Player && getField(2, 2) == ' ') {
-                return 8;
-            } else if (getField(0, 2) == Player && getField(2, 0) == ' ') {
-                return 2;
-            } else if (getField(2, 0) == Player && getField(0, 2) == ' ') {
-                return 6;
-            } else if (getField(2, 2) == Player && getField(0, 0) == ' ') {
-                return 0;
+        if( sublevel >= 2 ) {
+            if (getField(1, 1) == Player) {
+                if (getField(0, 0) == Player && getField(2, 2) == ' ') {
+                    return 8;
+                } else if (getField(0, 2) == Player && getField(2, 0) == ' ') {
+                    return 2;
+                } else if (getField(2, 0) == Player && getField(0, 2) == ' ') {
+                    return 6;
+                } else if (getField(2, 2) == Player && getField(0, 0) == ' ') {
+                    return 0;
+                }
             }
         }
-        //prüfe Zwickmühle
-        // (unten rechts)
-        if(getField(2,1) == Player && getField(1,2) == Player && getField(2,2) == ' ') {
-            return 8;
-        } // unten links
-        else if(getField(0,1) == Player && getField(1,2) == Player && getField(0,2) == ' ') {
-            return 6;
-        }// oben links
-        else if(getField(1,0) == Player && getField(0,1) == Player && getField(0,0) == ' ') {
-            return 0;
-        }// oben rechts
-        else if(getField(1,0) == Player && getField(2,1) == Player && getField(2,0) == ' ') {
-            return 2;
+        if( sublevel >= 3) {
+            //prüfe Zwickmühle
+            // (unten rechts)
+            if (getField(2, 1) == Player && getField(1, 2) == Player && getField(2, 2) == ' ') {
+                return 8;
+            } // unten links
+            else if (getField(0, 1) == Player && getField(1, 2) == Player && getField(0, 2) == ' ') {
+                return 6;
+            }// oben links
+            else if (getField(1, 0) == Player && getField(0, 1) == Player && getField(0, 0) == ' ') {
+                return 0;
+            }// oben rechts
+            else if (getField(1, 0) == Player && getField(2, 1) == Player && getField(2, 0) == ' ') {
+                return 2;
+            }
         }
         return -1;
     }
