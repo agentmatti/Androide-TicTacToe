@@ -190,36 +190,36 @@ public class GameEngine {
             if (position == -1) {
                 return computeLevel(tmpLevel - 1);
             } else field[position] = currentPlayer;
-        } else if (level == 3) {
+        } else if (tmpLevel == 3) {
             // Angriff
             position = checkDefenseOrAttack('X', 1);
             if (position == -1) {
                 return computeLevel(tmpLevel - 1);
 
             } else field[position] = currentPlayer;
-        } else if (level == 4) {
+        } else if (tmpLevel == 4) {
             // Angriff
             position = checkDefenseOrAttack('X', 2);
             if (position == -1) {
                 return computeLevel(tmpLevel - 1);
             } else field[position] = currentPlayer;
-        } else if (level == 5) {
+        } else if (tmpLevel == 5) {
             // angriff
             position = checkDefenseOrAttack('O', 0);
             if (position == -1) {
                 return computeLevel(tmpLevel - 1);
             } else field[position] = currentPlayer;
-        } else if (level == 6) {
+        } else if (tmpLevel == 6) {
             int f = checkDefenseOrAttack('O', 1);
             if (f == -1) {
                 computeLevel(tmpLevel - 1);
             } else field[f] = currentPlayer;
-        } else if (level == 7) {
+        } else if (tmpLevel == 7) {
             position = checkDefenseOrAttack('O', 2);
             if (position == -1) {
                 return computeLevel(tmpLevel - 1);
             } else field[position] = currentPlayer;
-        } else if (level == 8) {
+        } else if (tmpLevel == 8) {
             position = checkDefenseOrAttack('O', 2);
             if (position == -1) {
                 int f2 = checkDefenseOrAttack('X', 3);
@@ -227,7 +227,7 @@ public class GameEngine {
                     return computeLevel(tmpLevel - 1);
                 } else field[f2] = currentPlayer;
             } else field[position] = currentPlayer;
-        } else if (level == 9) {
+        } else if (tmpLevel == 9) {
             // minmax
             // to be done, until then to random (baby mode)
             return computeLevel(tmpLevel - 1);
