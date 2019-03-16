@@ -163,9 +163,8 @@ public class GameEngine {
                 // prüfe Fahtaidikunk
                 field[f] = currentPlayer;
                 changePlayer();
-            } else if (field[4] == ' ') {
+            } else if( setMiddle() != -1 ) {
                 // prüfe und setze in die mitte
-                field[4] = currentPlayer;
                 changePlayer();
             } else {
                 //prüfe und setze ecken
@@ -183,16 +182,36 @@ public class GameEngine {
 //                    changePlayer();
 //                } else
                 {
-                    int position = -1;
-                    // try setting a random field which is not used
-                    do {
-                        position = RANDOM.nextInt(9);
-                    } while (field[position] != ' ');
-                    field[position] = currentPlayer;
+                    setRandomField();
                     changePlayer();
                 }
             }
         }
         return checkEnd();
     }
+
+    int setMiddle() {
+        int position = -1;
+
+        if (field[4] == ' ') {
+            // prüfe und setze in die mitte
+            field[4] = currentPlayer;
+            position = 4;
+        }
+        return position;
+    }
+
+    int setRandomField() {
+
+        int position = -1;
+        // try setting a random field which is not used
+        do {
+            position = RANDOM.nextInt(9);
+        } while (field[position] != ' ');
+
+        field[position] = currentPlayer;
+
+        return position;
+    }
+
 }
