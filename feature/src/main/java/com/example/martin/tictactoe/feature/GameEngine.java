@@ -13,7 +13,7 @@ public class GameEngine {
     public GameEngine() {
         field = new char[9];
         // initial level is 0
-        level = 1;
+        level = 9;
         newGame();
     }
 
@@ -23,6 +23,7 @@ public class GameEngine {
     }
 
     public char play(int x, int y) {
+        System.out.println("play(" + currentPlayer + ")");
         // check if field is not used
         // return error if not
         if (' ' != field[3 * y + x]) {
@@ -52,6 +53,7 @@ public class GameEngine {
 
     // start a new game
     public void newGame() {
+        System.out.println("----- new Gaihm -----");
         // set all fields to ' ' empty
         for (int i = 0; i < field.length; i++) {
             field[i] = ' ';
@@ -63,6 +65,7 @@ public class GameEngine {
         } else {
             currentPlayer = 'O';
         }
+        System.out.println("start with Plaiher" + currentPlayer);
         // set ended flag to false
         ended = false;
     }
@@ -172,82 +175,74 @@ public class GameEngine {
 //8 zwick
 //9 minmax
 
+    public int computeLevel(int tmpLevel) {
+        System.out.println("wie sind jetzt level " + tmpLevel);
+        int position = -1;
+        if (tmpLevel == 0) {
+            return setRandomField();
+        } else if (tmpLevel == 1) {
+            position = setMiddle();
+            if (position == -1) {
+                return computeLevel(tmpLevel - 1);
+            }
+        } else if (tmpLevel == 2) {
+            position = checkDefenseOrAttack('X', 0);
+            if (position == -1) {
+                return computeLevel(tmpLevel - 1);
+            } else field[position] = currentPlayer;
+        } else if (level == 3) {
+            // Angriff
+            position = checkDefenseOrAttack('X', 1);
+            if (position == -1) {
+                return computeLevel(tmpLevel - 1);
+
+            } else field[position] = currentPlayer;
+        } else if (level == 4) {
+            // Angriff
+            position = checkDefenseOrAttack('X', 2);
+            if (position == -1) {
+                return computeLevel(tmpLevel - 1);
+            } else field[position] = currentPlayer;
+        } else if (level == 5) {
+            // angriff
+            position = checkDefenseOrAttack('O', 0);
+            if (position == -1) {
+                return computeLevel(tmpLevel - 1);
+            } else field[position] = currentPlayer;
+        } else if (level == 6) {
+            int f = checkDefenseOrAttack('O', 1);
+            if (f == -1) {
+                computeLevel(tmpLevel - 1);
+            } else field[f] = currentPlayer;
+        } else if (level == 7) {
+            position = checkDefenseOrAttack('O', 2);
+            if (position == -1) {
+                return computeLevel(tmpLevel - 1);
+            } else field[position] = currentPlayer;
+        } else if (level == 8) {
+            position = checkDefenseOrAttack('O', 2);
+            if (position == -1) {
+                int f2 = checkDefenseOrAttack('X', 3);
+                if (f2 == -1) {
+                    return computeLevel(tmpLevel - 1);
+                } else field[f2] = currentPlayer;
+            } else field[position] = currentPlayer;
+        } else if (level == 9) {
+            // minmax
+            // to be done, until then to random (baby mode)
+            return computeLevel(tmpLevel - 1);
+
+        } else {
+            return computeLevel(8);
+        }
+        return position;
+    }
+
     // the computer player
     public char computer() {
+        System.out.println("ich setze jetzt");
         if (!ended) {
-            // prüfe attacke
-            if (level == 0) {
-                setRandomField();
-            } else if (level == 1) {
-                if (setMiddle() != -1) {
-                    setRandomField();
-                }
-            } else if (level == 2) {
-                // Angriff
-                if (checkDefenseOrAttack('O', 0) != -1) {
-                    if (setMiddle() != -1) {
-                        setRandomField();
-                    }
-                }
-            } else if (level == 3) {
-                // Angriff
-                if (checkDefenseOrAttack('O', 1) != -1) {
-                    if (setMiddle() != -1) {
-                        setRandomField();
-                    }
-                }
-            } else if (level == 4) {
-                // Angriff
-                if (checkDefenseOrAttack('O', 2) != -1) {
-                    if (setMiddle() != -1) {
-                        setRandomField();
-                    }
-                }
-            } else if (level == 5) {
-                // angriff
-                if (checkDefenseOrAttack('O', 2) != -1) {
-                    // verteidigung
-                    if (checkDefenseOrAttack('X', 0) != -1) {
-                        if (setMiddle() != -1) {
-                            setRandomField();
-                        }
-                    }
-                }
-            } else if (level == 6) {
-                // angriff
-                if (checkDefenseOrAttack('O', 2) != -1) {
-                    // verteidigung
-                    if (checkDefenseOrAttack('X', 1) != -1) {
-                        if (setMiddle() != -1) {
-                            setRandomField();
-                        }
-                    }
-                }
-            } else if (level == 7) {
-                // angriff
-                if (checkDefenseOrAttack('O', 2) != -1) {
-                    // verteidigung
-                    if (checkDefenseOrAttack('X', 2) != -1) {
-                        if (setMiddle() != -1) {
-                            setRandomField();
-                        }
-                    }
-                }
-            } else if (level == 8) {
-                // angriff
-                if (checkDefenseOrAttack('O', 2) != -1) {
-                    // verteidigung
-                    if (checkDefenseOrAttack('X', 3) != -1) {
-                        if (setMiddle() != -1) {
-                            setRandomField();
-                        }
-                    }
-                }
-            } else if (level == 9) {
-                // minmax
-                // to be done, until then to random (baby mode)
-                setRandomField();
-            }
+            computeLevel(level);
             changePlayer();
         }
         return checkEnd();
