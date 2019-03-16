@@ -89,41 +89,69 @@ public class GameEngine {
             if (field[i] == ' ')
                 return ' ';
         }
-
-
         return 'T';
     }
 
-    public int checkDefense() {
-
-        for (int y = 0; y<=2;y++ ) {
-            if ((getField(0, y) == 'X') && (getField(1, y) == 'X') && (getField(2, y) == ' ')) {
+    public int checkDefenseOrAttack(char Player) {
+        // prüfe auf verteidigung
+        // waagerecht
+        for (int y = 0; y <= 2; y++) {
+            if ((getField(0, y) == Player) && (getField(1, y) == Player) && (getField(2, y) == ' ')) {
                 return 2 + (y * 3);
-            } else if ((getField(0, y) == 'X') && (getField(2, y) == 'X') && (getField(1, y) == ' ')) {
+            } else if ((getField(0, y) == Player) && (getField(2, y) == Player) && (getField(1, y) == ' ')) {
                 return 1 + (y * 3);
-            } else if ((getField(1, y) == 'X') && (getField(2, y) == 'X') && (getField(0, y) == ' ')) {
+            } else if ((getField(1, y) == Player) && (getField(2, y) == Player) && (getField(0, y) == ' ')) {
                 return 0 + (y * 3);
             }
-        }
-        for (int y = 0; y<=2;y++ ) {
-            if ((getField(y, 0) == 'X') && (getField(y, 1) == 'X') && (getField(y, 2) == ' ')) {
+        } //senkrecht (vertauschen von x und y um gedreht zu prüfen)
+        for (int y = 0; y <= 2; y++) {
+            if ((getField(y, 0) == Player) && (getField(y, 1) == Player) && (getField(y, 2) == ' ')) {
                 return y + (2 * 3);
-            } else if ((getField(y, 0) == 'X') && (getField(y, 2) == 'X') && (getField(y, 1) == ' ')) {
+            } else if ((getField(y, 0) == Player) && (getField(y, 2) == Player) && (getField(y, 1) == ' ')) {
                 return y + (1 * 3);
-            } else if ((getField(y, 1) == 'X') && (getField(y, 2) == 'X') && (getField(y, 0) == ' ')) {
+            } else if ((getField(y, 1) == Player) && (getField(y, 2) == Player) && (getField(y, 0) == ' ')) {
                 return y + (0 * 3);
             }
         }
+        // diagonal
+        if (getField(1, 1) == Player) {
+            if (getField(0, 0) == Player && getField(2, 2) == ' ') {
+                return 8;
+            } else if (getField(0, 2) == Player && getField(2, 0) == ' ') {
+                return 2;
+            } else if (getField(2, 0) == Player && getField(0, 2) == ' ') {
+                return 6;
+            } else if (getField(2, 2) == Player && getField(0, 0) == ' ') {
+                return 0;
+            }
+        }
+        //prüfe Zwickmühle
+        // (unten rechts)
+        if(getField(2,1) == Player && getField(1,2) == Player && getField(2,2) == ' ') {
+            return 8;
+        } // unten links
+        else if(getField(0,1) == Player && getField(1,2) == Player && getField(0,2) == ' ') {
+            return 6;
+        }// oben links
+        else if(getField(1,0) == Player && getField(0,1) == Player && getField(0,0) == ' ') {
+            return 0;
+        }// oben rechts
+        else if(getField(1,0) == Player && getField(2,1) == Player && getField(2,0) == ' ') {
+            return 2;
+        }
         return -1;
-
     }
 
     // the computer player
     public char computer() {
         if (!ended) {
-
-            int f = checkDefense();
-            if (f != -1) {
+            // prüfe attacke
+            int f = checkDefenseOrAttack('O');
+            if ( f != -1) {
+                field[f] = currentPlayer;
+                changePlayer();
+            } else if ((f = checkDefenseOrAttack('X')) != -1 ){
+                // prüfe Fahtaidikunk
                 field[f] = currentPlayer;
                 changePlayer();
             } else if (field[4] == ' ') {
@@ -132,33 +160,30 @@ public class GameEngine {
                 changePlayer();
             } else {
                 //prüfe und setze ecken
-                if (field[0] == ' ') {
-                    field[0] = currentPlayer;
-                    changePlayer();
-
-                } else if (field[2] == ' ') {
-                    field[2] = currentPlayer;
-                    changePlayer();
-                } else if (field[6] == ' ') {
-                    field[6] = currentPlayer;
-                    changePlayer();
-                } else if (field[8] == ' ') {
-                    field[8] = currentPlayer;
-                    changePlayer();
-                } else {
+//                if (field[1] == ' ') {
+//                    field[1] = currentPlayer;
+//                    changePlayer();
+//                } else if (field[7] == ' ') {
+//                    field[7] = currentPlayer;
+//                    changePlayer();
+//                } else if (field[5] == ' ') {
+//                    field[5] = currentPlayer;
+//                    changePlayer();
+//                } else if (field[3] == ' ') {
+//                    field[3] = currentPlayer;
+//                    changePlayer();
+//                } else
+                {
                     int position = -1;
                     // try setting a random field which is not used
                     do {
-
                         position = RANDOM.nextInt(9);
                     } while (field[position] != ' ');
-
                     field[position] = currentPlayer;
                     changePlayer();
                 }
             }
         }
         return checkEnd();
-
     }
 }

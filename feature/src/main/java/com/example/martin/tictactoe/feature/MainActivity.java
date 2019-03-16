@@ -37,11 +37,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-	public void gameError() {
-		String msg = "only press empty fields";
+    public void gameError() {
+        String msg = "only press empty fields";
         new AlertDialog.Builder(this).setTitle("PRESS OTHERWERE").setMessage(msg).show();
-	}
-	
+    }
+
     public void gameEnded(char c) {
         String msg ;
 
