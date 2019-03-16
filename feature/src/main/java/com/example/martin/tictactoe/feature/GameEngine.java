@@ -42,6 +42,7 @@ public class GameEngine {
     char getCurrentPlayer() {
         return currentPlayer;
     }
+
     // get the status of a field
     public char getField(int x, int y) {
         return field[3 * y + x];
@@ -55,7 +56,7 @@ public class GameEngine {
         }
         // start with random player
         int rand = RANDOM.nextInt(9);
-        if( rand < 5 ) {
+        if (rand < 5) {
             currentPlayer = 'X';
         } else {
             currentPlayer = 'O';
@@ -118,7 +119,7 @@ public class GameEngine {
             }
         } //senkrecht (vertauschen von x und y um gedreht zu prüfen)
 
-        if( sublevel >= 1 ) {
+        if (sublevel >= 1) {
             for (int y = 0; y <= 2; y++) {
                 if ((getField(y, 0) == Player) && (getField(y, 1) == Player) && (getField(y, 2) == ' ')) {
                     return y + (2 * 3);
@@ -130,7 +131,7 @@ public class GameEngine {
             }
         }
         // diagonal
-        if( sublevel >= 2 ) {
+        if (sublevel >= 2) {
             if (getField(1, 1) == Player) {
                 if (getField(0, 0) == Player && getField(2, 2) == ' ') {
                     return 8;
@@ -143,7 +144,7 @@ public class GameEngine {
                 }
             }
         }
-        if( sublevel >= 3) {
+        if (sublevel >= 3) {
             //prüfe Zwickmühle
             // (unten rechts)
             if (getField(2, 1) == Player && getField(1, 2) == Player && getField(2, 2) == ' ') {
@@ -161,42 +162,90 @@ public class GameEngine {
         }
         return -1;
     }
+//0 zufall
+//1 middle
+//2-4 defense
+//5-7 attack
+//8 zwick
+//9 minmax
 
     // the computer player
     public char computer() {
         if (!ended) {
             // prüfe attacke
-            int f = checkDefenseOrAttack('O');
-            if ( f != -1) {
-                field[f] = currentPlayer;
-                changePlayer();
-            } else if ((f = checkDefenseOrAttack('X')) != -1 ){
-                // prüfe Fahtaidikunk
-                field[f] = currentPlayer;
-                changePlayer();
-            } else if( setMiddle() != -1 ) {
-                // prüfe und setze in die mitte
-                changePlayer();
-            } else {
-                //prüfe und setze ecken
-//                if (field[1] == ' ') {
-//                    field[1] = currentPlayer;
-//                    changePlayer();
-//                } else if (field[7] == ' ') {
-//                    field[7] = currentPlayer;
-//                    changePlayer();
-//                } else if (field[5] == ' ') {
-//                    field[5] = currentPlayer;
-//                    changePlayer();
-//                } else if (field[3] == ' ') {
-//                    field[3] = currentPlayer;
-//                    changePlayer();
-//                } else
-                {
+            if (level >= 0) {
+                setRandomField();
+            } else if (level >= 1) {
+                if (setMiddle() != -1) {
                     setRandomField();
-                    changePlayer();
                 }
+            } else if (level >= 2) {
+                // Angriff
+                if (checkDefenseOrAttack('O', 0) != -1) {
+                    if (setMiddle() != -1) {
+                        setRandomField();
+                    }
+                }
+            } else if (level >= 3) {
+                // Angriff
+                if (checkDefenseOrAttack('O', 1) != -1) {
+                    if (setMiddle() != -1) {
+                        setRandomField();
+                    }
+                }
+            } else if (level >= 4) {
+                // Angriff
+                if (checkDefenseOrAttack('O', 2) != -1) {
+                    if (setMiddle() != -1) {
+                        setRandomField();
+                    }
+                }
+            } else if (level >= 5) {
+                // angriff
+                if (checkDefenseOrAttack('O', 2) != -1) {
+                    // verteidigung
+                    if (checkDefenseOrAttack('X', 0) != -1) {
+                        if (setMiddle() != -1) {
+                            setRandomField();
+                        }
+                    }
+                }
+            } else if (level >= 6) {
+                // angriff
+                if (checkDefenseOrAttack('O', 2) != -1) {
+                    // verteidigung
+                    if (checkDefenseOrAttack('X', 1) != -1) {
+                        if (setMiddle() != -1) {
+                            setRandomField();
+                        }
+                    }
+                }
+            } else if (level >= 7) {
+                // angriff
+                if (checkDefenseOrAttack('O', 2) != -1) {
+                    // verteidigung
+                    if (checkDefenseOrAttack('X', 2) != -1) {
+                        if (setMiddle() != -1) {
+                            setRandomField();
+                        }
+                    }
+                }
+            } else if (level >= 8) {
+                // angriff
+                if (checkDefenseOrAttack('O', 2) != -1) {
+                    // verteidigung
+                    if (checkDefenseOrAttack('X', 3) != -1) {
+                        if (setMiddle() != -1) {
+                            setRandomField();
+                        }
+                    }
+                }
+            } else if (level >= 9) {
+                // minmax
+                // to be done, until then to random (baby mode)
+                setRandomField();
             }
+            changePlayer();
         }
         return checkEnd();
     }
