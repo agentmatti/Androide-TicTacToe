@@ -7,13 +7,22 @@ public class GameEngine {
     private char[] field;
     private char currentPlayer;
     private boolean ended;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     private int level;
 
     // start new game
     public GameEngine() {
         field = new char[9];
         // initial level is 0
-        level = 9;
+        level = 0;
         newGame();
     }
 
@@ -54,6 +63,7 @@ public class GameEngine {
     // start a new game
     public void newGame() {
         System.out.println("----- new Gaihm -----");
+
         // set all fields to ' ' empty
         for (int i = 0; i < field.length; i++) {
             field[i] = ' ';
