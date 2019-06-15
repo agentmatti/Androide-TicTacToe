@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (c == 'X') {
             msg = "Congratulations! You won!";
         } else {
-            msg = "Looser! Computer won!";
+            msg = "Congatulthions! Yhou fahiled succesfully!";
         }
         new AlertDialog.Builder(this).setTitle("Hey Bro").setMessage(msg).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
