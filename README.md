@@ -1,5 +1,5 @@
 # Android-TicTacToe
-## TicTacToe fuer Android
+## TicTacToe für Android
 Gemacht mit Android Studio
 
-Leuft auf allen Android Geräten oder ueber virtuelles Handy
+Läuft auf allen Android Geräten oder über ein virtuelles Handy
