@@ -193,6 +193,7 @@ public class MM_GameEngineAdapter {
     public MM_GameEngineAdapter() {
         board = new MM_Board();
         Random rand = new Random();
+        board.displayBoard();
     }
 
     // player 1 = X (Player), 2 = O (AI)
@@ -203,6 +204,7 @@ public class MM_GameEngineAdapter {
         board.callMinimax(0, 1);
         MM_Point p = board.returnBestMove();
         board.placeAMove( p, 2);
+        board.displayBoard();
         return p.x + (3 * p.y);
     }
 
@@ -210,6 +212,7 @@ public class MM_GameEngineAdapter {
         MM_Point p = new MM_Point(x,y);
         if( ! board.getAvailableStates().contains(p)) {
             board.placeAMove(p, 1);
+            board.displayBoard();
             return y + 3*x;
         } else {
             return -1;
