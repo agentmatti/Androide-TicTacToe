@@ -7,6 +7,7 @@ public class GameEngine {
     private char[] field;
     private char currentPlayer;
     private boolean ended;
+    private MM_GameEngineAdapter ki;
 
     public int getLevel() {
         return level;
@@ -40,6 +41,9 @@ public class GameEngine {
         } else if (!ended && field[3 * y + x] == ' ') {
             // normal move
             field[3 * y + x] = currentPlayer;
+            if(level == 9) {
+                ki.Player_move(x, y);
+            }
             changePlayer();
         }
         return checkEnd();
@@ -63,6 +67,7 @@ public class GameEngine {
     // start a new game
     public void newGame() {
         System.out.println("----- new Gaihm -----");
+        ki = new MM_GameEngineAdapter();
 
         // set all fields to ' ' empty
         for (int i = 0; i < field.length; i++) {
@@ -238,15 +243,15 @@ public class GameEngine {
                 } else field[f2] = currentPlayer;
             } else field[position] = currentPlayer;
         } else if (tmpLevel == 9) {
+            position = ki.AI_move();
+            field[position] = currentPlayer;
             // minmax
-            // to be done, until then to random (baby mode)
-            return computeLevel(tmpLevel - 1);
-
         } else {
-            return computeLevel(8);
+            return computeLevel(9);
         }
         return position;
     }
+
 
     // the computer player
     public char computer() {

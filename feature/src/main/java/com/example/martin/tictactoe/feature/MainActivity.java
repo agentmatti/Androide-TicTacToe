@@ -44,30 +44,33 @@ public class MainActivity extends AppCompatActivity {
 
     public void gameEnded(char c) {
         String msg ;
-        levelanzeige = "level" + gameEngine.getLevel();
         if (c == 'T') {
-            msg = "Game Ended. Nobody won"+ levelanzeige;
+            msg = "Game Ended. Nobody won";
         } else if (c == 'X') {
 
 
             if (gameEngine.getLevel() <= 9) {
-                msg = "Congratulations! You won! Levelaufstieg!" + levelanzeige;
                 gameEngine.setLevel(gameEngine.getLevel() + 1);
+                msg = "Congratulations! You won! Levelaufstieg!";
+
             }else {
-                msg = "Congratulations! You won!"  + levelanzeige;
+                msg = "Stop hacking. You've just bet the impssible ";
             }
         } else {
             if (gameEngine.getLevel() >= 9) {
-                msg = "Congratulations! You failed succesfully! Levelabstieg!" + levelanzeige;
                 gameEngine.setLevel(gameEngine.getLevel() - 1);
+                msg = "Congratulations! You failed succesfully! Levelabstieg!";
+
 
             }else {
-                msg = "Congratulations! You failed succesfully!" + levelanzeige;
+                msg = "Congratulations! You failed succesfully!";
             }
 
         }
         //getActionBar().setTitle("Level: " );
         //getActionBar().setDisplayHomeAsUpEnabled(true);
+        msg = msg + "Level " + gameEngine.getLevel();
+
         new AlertDialog.Builder(this).setTitle("Hey Bro").setMessage(msg).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
