@@ -114,10 +114,16 @@ class MM_Board {
 
     public void displayBoard() {
         System.out.println();
-
+        System.out.println(("AI Board"));
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                System.out.print(board[i][j] + " ");
+                char c = '-';
+                if( board[i][j] == 1) {
+                    c = 'O';
+                } else if( board[i][j] == 2 ) {
+                    c = 'X';
+                }
+                System.out.print(c + " ");
             }
             System.out.println();
 
@@ -203,17 +209,22 @@ public class MM_GameEngineAdapter {
         }
         board.callMinimax(0, 1);
         MM_Point p = board.returnBestMove();
-        board.placeAMove( p, 2);
+        board.placeAMove( p, 1);
         board.displayBoard();
-        return p.x + (3 * p.y);
+        return p.y + (3 * p.x);
     }
 
-    public int Player_move( int x, int y) {
+    public int Player_move( int xExt, int yExt) {
+        // external player has 0:0 bottom left
+        // AI has 0:0 top left, and x/y swapped
+        int x = yExt;
+        int y = xExt;
+        System.out.println(("AI: Player sets to " + x + ":" + y));
         MM_Point p = new MM_Point(x,y);
         if( ! board.getAvailableStates().contains(p)) {
-            board.placeAMove(p, 1);
+            board.placeAMove(p, 2);
             board.displayBoard();
-            return y + 3*x;
+            return x + 3*y;
         } else {
             return -1;
         }
