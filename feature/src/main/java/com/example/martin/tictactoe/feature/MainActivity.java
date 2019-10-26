@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         if( gameEngine.getCurrentPlayer() == 'O') {
             gameEngine.computer();
         }
+        ImageView img = (ImageView) findViewById(R.id.p_o);
+        img.setVisibility(img.INVISIBLE);
         boardView.invalidate();
     }
 

@@ -6,10 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.example.martin.tictactoe.feature.MainActivity">
 
+    <ImageView
+        android:id="@+id/p_o"
+        android:layout_width="128dp"
+        android:layout_height="122dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/player_o" />
+
     <com.example.martin.tictactoe.feature.BoardView
         android:id="@+id/board"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:visibility="visible" />
 
 </RelativeLayout>

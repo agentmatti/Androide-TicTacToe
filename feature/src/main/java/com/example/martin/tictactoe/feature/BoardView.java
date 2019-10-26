@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 public class BoardView extends View {
 
@@ -21,6 +22,8 @@ public class BoardView extends View {
 
     public BoardView(Context context) {
         super(context);
+        ImageView img = (ImageView) activity.findViewById(R.id.p_o);
+        img.setVisibility(View.INVISIBLE);
     }
 
     public BoardView(Context context, @Nullable AttributeSet attrs) {
@@ -119,6 +122,13 @@ public class BoardView extends View {
 
             canvas.drawCircle(cx, cy, Math.min(eltW, eltH) / 2 - ELT_MARGIN * 2, oPaint);
 
+            ImageView img = (ImageView) activity.findViewById(R.id.p_o);
+            img.setVisibility(View.VISIBLE);
+
+            img.setX(cx - img.getWidth() / 2);
+            img.setY(cy - img.getHeight() / 2);
+
+
         } else if (c == 'X') {
             float startX = (eltW * x) + ELT_MARGIN;
             float startY = (eltH * y) + ELT_MARGIN;
@@ -133,6 +143,9 @@ public class BoardView extends View {
             float endY2 = startY2 + eltH - ELT_MARGIN;
 
             canvas.drawLine(startX2, startY2, endX2, endY2, xPaint);
+
+
+
         }
     }
 
