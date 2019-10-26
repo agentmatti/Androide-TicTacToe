@@ -144,6 +144,12 @@ public class BoardView extends View {
 
             canvas.drawLine(startX2, startY2, endX2, endY2, xPaint);
 
+            ImageView img = (ImageView) activity.findViewById(R.id.p_x);
+            img.setVisibility(View.VISIBLE);
+
+            img.setX(startX);
+            img.setY(endY);
+
 
 
         }

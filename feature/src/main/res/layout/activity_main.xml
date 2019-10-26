@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/p_o"
-        android:layout_width="128dp"
-        android:layout_height="122dp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:visibility="invisible"
         app:srcCompat="@drawable/player_o" />
 
@@ -20,5 +20,12 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
         android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/p_x"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/player_x" />
 
 </RelativeLayout>
