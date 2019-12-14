@@ -129,15 +129,20 @@ public class BoardView extends View {
                 players_x[x * 3 + y].setY(height / 3 * y);
 
                 players_o[x * 3 + y].setX(width / 3 * x);
-                players_o[x * 3 + y].setX(height / 3 * y);
+                players_o[x * 3 + y].setY(height / 3 * y);
 
                 players_x[x * 3 + y].setVisibility(View.INVISIBLE);
                 players_o[x * 3 + y].setVisibility(View.INVISIBLE);
 
-                drawElt(canvas, gameEngine.getField(x, y), x, y);
-
             }
+
         }
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                drawElt(canvas, gameEngine.getField(x, y), x, y);
+                }
+            }
+
     }
 
     private void drawGrid(Canvas canvas) {

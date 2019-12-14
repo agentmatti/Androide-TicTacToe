@@ -17,56 +17,56 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x3"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x4"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x5"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x6"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x7"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x8"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <ImageView
         android:id="@+id/p_x9"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
     <com.example.martin.tictactoe.feature.BoardView
         android:id="@+id/board"
@@ -88,62 +88,62 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o3"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o4"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o5"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o6"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o7"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o8"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o9"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_x"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_x" />
+        app:srcCompat="@drawable/brennholz" />
 
 </RelativeLayout>
