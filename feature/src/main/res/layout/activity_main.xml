@@ -7,6 +7,12 @@
     tools:context="com.example.martin.tictactoe.feature.MainActivity">
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/feuer" />
+
+    <ImageView
         android:id="@+id/p_x2"
         android:layout_width="130dp"
         android:layout_height="130dp"
@@ -75,7 +81,7 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/player_o" />
+        app:srcCompat="@drawable/wassertropfen" />
 
     <ImageView
         android:id="@+id/p_o2"

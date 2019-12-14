@@ -46,25 +46,25 @@ public class BoardView extends View {
         players_o = new ImageView[9];
         players_x = new ImageView[9];
 
-        players_x [0] = activity.findViewById(R.id.p_o);
-        players_x [1] = activity.findViewById(R.id.p_o2);
-        players_x [2] = activity.findViewById(R.id.p_o3);
-        players_x [3] = activity.findViewById(R.id.p_o4);
-        players_x [4] = activity.findViewById(R.id.p_o5);
-        players_x [5] = activity.findViewById(R.id.p_o6);
-        players_x [6] = activity.findViewById(R.id.p_o7);
-        players_x [7] = activity.findViewById(R.id.p_o8);
-        players_x [8] = activity.findViewById(R.id.p_o9);
+        players_x [0] = activity.findViewById(R.id.p_x);
+        players_x [1] = activity.findViewById(R.id.p_x2);
+        players_x [2] = activity.findViewById(R.id.p_x3);
+        players_x [3] = activity.findViewById(R.id.p_x4);
+        players_x [4] = activity.findViewById(R.id.p_x5);
+        players_x [5] = activity.findViewById(R.id.p_x6);
+        players_x [6] = activity.findViewById(R.id.p_x7);
+        players_x [7] = activity.findViewById(R.id.p_x8);
+        players_x [8] = activity.findViewById(R.id.p_x9);
 
-        players_o [0] = activity.findViewById(R.id.p_x);
-        players_o [1] = activity.findViewById(R.id.p_x2);
-        players_o [2] = activity.findViewById(R.id.p_x3);
-        players_o [3] = activity.findViewById(R.id.p_x4);
-        players_o [4] = activity.findViewById(R.id.p_x5);
-        players_o [5] = activity.findViewById(R.id.p_x6);
-        players_o [6] = activity.findViewById(R.id.p_x7);
-        players_o [7] = activity.findViewById(R.id.p_x8);
-        players_o [8] = activity.findViewById(R.id.p_x9);
+        players_o [0] = activity.findViewById(R.id.p_o);
+        players_o [1] = activity.findViewById(R.id.p_o2);
+        players_o [2] = activity.findViewById(R.id.p_o3);
+        players_o [3] = activity.findViewById(R.id.p_o4);
+        players_o [4] = activity.findViewById(R.id.p_o5);
+        players_o [5] = activity.findViewById(R.id.p_o6);
+        players_o [6] = activity.findViewById(R.id.p_o7);
+        players_o [7] = activity.findViewById(R.id.p_o8);
+        players_o [8] = activity.findViewById(R.id.p_o9);
     }
 
 
@@ -115,98 +115,27 @@ public class BoardView extends View {
     }
 
     private void drawBoard(Canvas canvas) {
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
 
 
-/*
-        ImageView img1o = (ImageView) activity.findViewById(R.id.p_o);
-        img1o.setVisibility(View.VISIBLE);
-        ImageView img2o = (ImageView) activity.findViewById(R.id.p_o2);
-        img2o.setVisibility(View.VISIBLE);
-        ImageView img3o = (ImageView) activity.findViewById(R.id.p_o3);
-        img3o.setVisibility(View.VISIBLE);
-        ImageView img4o = (ImageView) activity.findViewById(R.id.p_o4);
-        img4o.setVisibility(View.VISIBLE);
-        ImageView img5o = (ImageView) activity.findViewById(R.id.p_o5);
-        img5o.setVisibility(View.VISIBLE);
-        ImageView img6o = (ImageView) activity.findViewById(R.id.p_o6);
-        img6o.setVisibility(View.VISIBLE);
-        ImageView img7o = (ImageView) activity.findViewById(R.id.p_o7);
-        img7o.setVisibility(View.VISIBLE);
-        ImageView img8o = (ImageView) activity.findViewById(R.id.p_o8);
-        img8o.setVisibility(View.VISIBLE);
-        ImageView img9o = (ImageView) activity.findViewById(R.id.p_o9);
-        img9o.setVisibility(View.VISIBLE);
-*/
+                players_x[x * 3 + y].getLayoutParams().height = (height - ELT_MARGIN * 2) / 3;
+                players_x[x * 3 + y].getLayoutParams().width = (width - ELT_MARGIN * 2) / 3;
 
-//        ImageView img1x = (ImageView) activity.findViewById(R.id.p_x);
-//        img1x.setVisibility(View.VISIBLE);
-//        ImageView img2x = (ImageView) activity.findViewById(R.id.p_x2);
-//        img2x.setVisibility(View.VISIBLE);
-//        ImageView img3x = (ImageView) activity.findViewById(R.id.p_x3);
-//        img3x.setVisibility(View.VISIBLE);
-//        ImageView img4x = (ImageView) activity.findViewById(R.id.p_x4);
-//        img4x.setVisibility(View.VISIBLE);
-//        ImageView img5x = (ImageView) activity.findViewById(R.id.p_x5);
-//        img5x.setVisibility(View.VISIBLE);
-//        ImageView img6x = (ImageView) activity.findViewById(R.id.p_x6);
-//        img6x.setVisibility(View.VISIBLE);
-//        ImageView img7x = (ImageView) activity.findViewById(R.id.p_x7);
-//        img7x.setVisibility(View.VISIBLE);
-//        ImageView img8x = (ImageView) activity.findViewById(R.id.p_x8);
-//        img8x.setVisibility(View.VISIBLE);
-//        ImageView img9x = (ImageView) activity.findViewById(R.id.p_x9);
-//        img9x.setVisibility(View.VISIBLE);
+                players_o[x * 3 + y].getLayoutParams().height = (height - ELT_MARGIN * 2) / 3;
+                players_o[x * 3 + y].getLayoutParams().width = (width - ELT_MARGIN * 2) / 3;
 
+                players_x[x * 3 + y].setX(width / 3 * x);
+                players_x[x * 3 + y].setY(height / 3 * y);
 
+                players_o[x * 3 + y].setX(width / 3 * x);
+                players_o[x * 3 + y].setX(height / 3 * y);
 
-  /*      ImageView img1o = (ImageView) activity.findViewById(R.id.p_o);
-        img1o.setX(0);
-        img1o.setY(0);
-        img1o.setVisibility(View.VISIBLE);
+                players_x[x * 3 + y].setVisibility(View.INVISIBLE);
+                players_o[x * 3 + y].setVisibility(View.INVISIBLE);
 
-        ImageView img3o = (ImageView) activity.findViewById(R.id.p_o3);
-        img3o.setX(width/3);
-        img3o.setY(0);
-        img3o.setVisibility(View.VISIBLE);
+                drawElt(canvas, gameEngine.getField(x, y), x, y);
 
-        ImageView img2o = (ImageView) activity.findViewById(R.id.p_o2);
-        img2o.setX(width/3);
-        img2o.setY(height/3);
-        img2o.setVisibility(View.VISIBLE);
-
-        ImageView img4o = (ImageView) activity.findViewById(R.id.p_o4);
-        img4o.setX(width/3);
-        img4o.setY(height/3*2);
-        img4o.setVisibility(View.VISIBLE);
-
-        ImageView img5o = (ImageView) activity.findViewById(R.id.p_o5);
-        img5o.setX(0);
-        img5o.setY(height/3);
-        img5o.setVisibility(View.VISIBLE);
-
-        ImageView img6o = (ImageView) activity.findViewById(R.id.p_o6);
-        img6o.setX(0);
-        img6o.setY(height/3*2);
-        img6o.setVisibility(View.VISIBLE);
-
-        ImageView img7o = (ImageView) activity.findViewById(R.id.p_o7);
-        img7o.setX(width/3*2);
-        img7o.setY(0);
-        img7o.setVisibility(View.VISIBLE);
-
-        ImageView img8o = (ImageView) activity.findViewById(R.id.p_o8);
-        img8o.setX(width/3*2);
-        img8o.setY(height/3);
-        img8o.setVisibility(View.VISIBLE);
-
-        ImageView img9o = (ImageView) activity.findViewById(R.id.p_o9);
-        img9o.setX(width/3*2);
-        img9o.setY(height/3*2);
-        img9o.setVisibility(View.VISIBLE);
-*/
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                drawElt(canvas, gameEngine.getField(i, j), i, j);
             }
         }
     }
@@ -233,41 +162,12 @@ public class BoardView extends View {
 
     private void drawElt(Canvas canvas, char c, int x, int y) {
         if (c == 'O') {
-            float cx = (eltW * x) + eltW / 2;
-            float cy = (eltH * y) + eltH / 2;
+            players_o[x * 3 + y].setVisibility(View.VISIBLE);
 
-            canvas.drawCircle(cx, cy, Math.min(eltW, eltH) / 2 - ELT_MARGIN * 2, oPaint);
-
-        //    ImageView img = (ImageView) activity.findViewById(R.id.p_o);
-          //  img.setVisibility(View.VISIBLE);
-
-            //img.setX(cx - img.getWidth() / 2);
-            //img.setY(cy - img.getHeight() / 2);
 
 
         } else if (c == 'X') {
-            float startX = (eltW * x) + ELT_MARGIN;
-            float startY = (eltH * y) + ELT_MARGIN;
-            float endX = startX + eltW - ELT_MARGIN * 2;
-            float endY = startY + eltH - ELT_MARGIN;
-
-            canvas.drawLine(startX, startY, endX, endY, xPaint);
-
-            float startX2 = (eltW * (x + 1)) - ELT_MARGIN;
-            float startY2 = (eltH * y) + ELT_MARGIN;
-            float endX2 = startX2 - eltW + ELT_MARGIN * 2;
-            float endY2 = startY2 + eltH - ELT_MARGIN;
-
-            canvas.drawLine(startX2, startY2, endX2, endY2, xPaint);
-
-            //ImageView img = (ImageView) activity.findViewById(R.id.p_x);
-            //img.setVisibility(View.VISIBLE);
-
-            //img.setX(startX);
-            //img.setY(endY);
-
-
-
+            players_x[x * 3 + y].setVisibility(View.VISIBLE);
         }
     }
 
